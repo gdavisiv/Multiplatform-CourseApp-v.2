@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CoursesView: View {
     var body: some View {
+        //Creating a Simple List that iterates 20 times.
+        //Calling CourseRow()
         List(0 ..< 20) { item in
             CourseRow()
         }
