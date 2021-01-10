@@ -11,11 +11,19 @@ struct ContentView: View {
     var body: some View {
         
         VStack(alignment: .leading, spacing: 4.0){
-            Image("Illustration 1")
-                .resizable()
-                .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fit/*@END_MENU_TOKEN@*/)
-            Text("SwiftUI for iOS 14").fontWeight(.bold)
-            Text("20 Sections").font(.footnote)
+            Spacer()
+            HStack {
+                Spacer()
+                Image("Illustration 1")
+                    .resizable()
+                    .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fit/*@END_MENU_TOKEN@*/)
+                Spacer()
+            }
+            Text("SwiftUI for iOS 14")
+                .fontWeight(.bold)
+                .foregroundColor(Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)))
+            Text("20 Sections")
+                .font(.footnote)
         }
         .padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
         .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.blue/*@END_MENU_TOKEN@*/)
