@@ -35,8 +35,11 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+        //Creates a second Contentview for Prototyping Purposes
         ContentView()
+            //Changes the second Previews height to specific dimensions
             .previewLayout(.fixed(width: 200.0, height: 200.0))
+            //Enables Dark Mode
             .preferredColorScheme(.dark)
     }
 }
