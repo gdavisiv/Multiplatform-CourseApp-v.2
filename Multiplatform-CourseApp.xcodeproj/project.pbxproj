@@ -11,6 +11,8 @@
 		E258542125AA7CD100F18B2F /* CourseRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E258541F25AA7CD100F18B2F /* CourseRow.swift */; };
 		E258542525AA81FD00F18B2F /* CoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E258542425AA81FD00F18B2F /* CoursesView.swift */; };
 		E258542625AA81FD00F18B2F /* CoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E258542425AA81FD00F18B2F /* CoursesView.swift */; };
+		E27EE99525ABED260020766B /* SideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27EE99425ABED260020766B /* SideBar.swift */; };
+		E27EE99625ABED260020766B /* SideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27EE99425ABED260020766B /* SideBar.swift */; };
 		E2D95D0625A60C2D007F8C89 /* Multiplatform_CourseAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D95CF325A60C2D007F8C89 /* Multiplatform_CourseAppApp.swift */; };
 		E2D95D0725A60C2D007F8C89 /* Multiplatform_CourseAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D95CF325A60C2D007F8C89 /* Multiplatform_CourseAppApp.swift */; };
 		E2D95D0825A60C2D007F8C89 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D95CF425A60C2D007F8C89 /* ContentView.swift */; };
@@ -22,6 +24,7 @@
 /* Begin PBXFileReference section */
 		E258541F25AA7CD100F18B2F /* CourseRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseRow.swift; sourceTree = "<group>"; };
 		E258542425AA81FD00F18B2F /* CoursesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesView.swift; sourceTree = "<group>"; };
+		E27EE99425ABED260020766B /* SideBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
 		E2D95CF325A60C2D007F8C89 /* Multiplatform_CourseAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Multiplatform_CourseAppApp.swift; sourceTree = "<group>"; };
 		E2D95CF425A60C2D007F8C89 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E2D95CF525A60C2D007F8C89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,6 +70,7 @@
 				E2D95CF425A60C2D007F8C89 /* ContentView.swift */,
 				E258541F25AA7CD100F18B2F /* CourseRow.swift */,
 				E258542425AA81FD00F18B2F /* CoursesView.swift */,
+				E27EE99425ABED260020766B /* SideBar.swift */,
 				E2D95CF525A60C2D007F8C89 /* Assets.xcassets */,
 			);
 			path = Shared;
@@ -195,6 +199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E27EE99525ABED260020766B /* SideBar.swift in Sources */,
 				E2D95D0825A60C2D007F8C89 /* ContentView.swift in Sources */,
 				E258542025AA7CD100F18B2F /* CourseRow.swift in Sources */,
 				E2D95D0625A60C2D007F8C89 /* Multiplatform_CourseAppApp.swift in Sources */,
@@ -206,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E27EE99625ABED260020766B /* SideBar.swift in Sources */,
 				E2D95D0925A60C2D007F8C89 /* ContentView.swift in Sources */,
 				E258542125AA7CD100F18B2F /* CourseRow.swift in Sources */,
 				E2D95D0725A60C2D007F8C89 /* Multiplatform_CourseAppApp.swift in Sources */,
