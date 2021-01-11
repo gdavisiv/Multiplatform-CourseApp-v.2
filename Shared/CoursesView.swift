@@ -15,6 +15,8 @@ struct CoursesView: View {
             CourseRow()
         }
         .listStyle(InsetGroupedListStyle())
+        //Gives content with a title Above it
+        .navigationTitle("Courses")
     }
 }
 

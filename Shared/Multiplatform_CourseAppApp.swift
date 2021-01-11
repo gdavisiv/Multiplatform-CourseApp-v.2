@@ -11,7 +11,7 @@ import SwiftUI
 struct Multiplatform_CourseAppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SideBar()
         }
     }
 }
