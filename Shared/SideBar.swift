@@ -24,8 +24,10 @@ struct SideBar: View {
                 //Sets specific widths for MAC desktops
                 .frame(minWidth: 200, idealWidth: 250, maxWidth: 300)
                 .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Image(systemName: "person.crop.circle")
+                    ToolbarItem(placement: .automatic) {
+                        Button(action: {}) {
+                            Image(systemName: "person.crop.circle")
+                        }
                     }
                 }
             #endif
