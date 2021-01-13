@@ -14,10 +14,20 @@ struct SideBar: View {
             #if os(iOS)
             content
                 .navigationTitle("Learn")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Image(systemName: "person.crop.circle")
+                    }
+                }
             #else
             content
                 //Sets specific widths for MAC desktops
                 .frame(minWidth: 200, idealWidth: 250, maxWidth: 300)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Image(systemName: "person.crop.circle")
+                    }
+                }
             #endif
             
             CoursesView()
