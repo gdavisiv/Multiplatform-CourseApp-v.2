@@ -8,8 +8,26 @@
 import SwiftUI
 
 struct CoursesView: View {
+    @State var show = false
     var body: some View {
-        Text("")
+        ZStack {
+            CourseItem()
+                .frame(width: 335, height: 250)
+            VStack {
+                if show {
+                    CourseItem()
+                        .transition(.scale)
+                        .edgesIgnoringSafeArea(.all)
+                }
+            }
+        }
+        .onTapGesture {
+            withAnimation(.spring()) {
+                //everytime you tap on the card it will switch between true/false
+                show.toggle()
+            }
+        }
+        //.animation(.spring())
     }
 }
 
