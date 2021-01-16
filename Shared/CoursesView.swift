@@ -16,22 +16,22 @@ struct CoursesView: View {
         ZStack {
             ScrollView {
                 VStack(spacing: 20) {
-                    CourseItem()
-                        //Allows to animate shared elements between two views
-                        //!show is false because we have to make it true
-                        .matchedGeometryEffect(id: "Card", in: namespace, isSource: !show)
-                        .frame(width: 335, height: 250)
+                    ForEach(courses) { item in
+                        CourseItem(course: item)
+                            //Allows to animate shared elements between two views
+                            //!show is false because we have to make it true
+                            .matchedGeometryEffect(id: item.id, in: namespace, isSource: !show)
+                            .frame(width: 335, height: 250)
+                    }
                     
-                    CourseItem()
-                        .frame(width: 335, height: 250)
                 }
                 .frame(maxWidth: .infinity)
             }
             
             if show {
                 ScrollView {
-                    CourseItem()
-                        .matchedGeometryEffect(id: "Card", in: namespace)
+                    CourseItem(course: courses[0])
+                        .matchedGeometryEffect(id: courses[0].id, in: namespace)
                         .frame(height: 300)
                     VStack {
                         //Repeats CourseRow 20X
