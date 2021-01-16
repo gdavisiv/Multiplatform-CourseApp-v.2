@@ -9,13 +9,19 @@ import SwiftUI
 
 struct CoursesView: View {
     @State var show = false
+    //Set a collection of match elementsNeed to create namespace to work wiht matchedGeometryEffect
+    @Namespace var namespace
+    
     var body: some View {
         ZStack {
             CourseItem()
+                //Allows to animate shared elements between two views
+                .matchedGeometryEffect(id: "Card", in: namespace)
                 .frame(width: 335, height: 250)
             VStack {
                 if show {
                     CourseItem()
+                        .matchedGeometryEffect(id: "Card", in: namespace)
                         .transition(.scale)
                         .edgesIgnoringSafeArea(.all)
                 }
