@@ -9,22 +9,31 @@ import SwiftUI
 
 struct CoursesView: View {
     @State var show = false
-    //Set a collection of match elementsNeed to create namespace to work wiht matchedGeometryEffect
+    //Set a collection of match elementsNeed
     @Namespace var namespace
     
     var body: some View {
         ZStack {
             CourseItem()
                 //Allows to animate shared elements between two views
-                .matchedGeometryEffect(id: "Card", in: namespace)
+                //!show is false because we have to make it true
+                .matchedGeometryEffect(id: "Card", in: namespace, isSource: !show)
                 .frame(width: 335, height: 250)
-            VStack {
-                if show {
+            if show {
+                ScrollView {
                     CourseItem()
                         .matchedGeometryEffect(id: "Card", in: namespace)
-                        .transition(.scale)
-                        .edgesIgnoringSafeArea(.all)
+                        .frame(height: 300)
+                    VStack {
+                        //Repeats CourseRow 20X
+                        ForEach(0 ..< 20) { item in
+                            CourseRow()
+                        }
+                    }
+                    .padding()
                 }
+                .transition(.opacity)
+                .edgesIgnoringSafeArea(.all)
             }
         }
         .onTapGesture {
@@ -33,7 +42,6 @@ struct CoursesView: View {
                 show.toggle()
             }
         }
-        //.animation(.spring())
     }
 }
 
