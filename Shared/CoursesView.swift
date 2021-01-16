@@ -14,11 +14,20 @@ struct CoursesView: View {
     
     var body: some View {
         ZStack {
-            CourseItem()
-                //Allows to animate shared elements between two views
-                //!show is false because we have to make it true
-                .matchedGeometryEffect(id: "Card", in: namespace, isSource: !show)
-                .frame(width: 335, height: 250)
+            ScrollView {
+                VStack(spacing: 20) {
+                    CourseItem()
+                        //Allows to animate shared elements between two views
+                        //!show is false because we have to make it true
+                        .matchedGeometryEffect(id: "Card", in: namespace, isSource: !show)
+                        .frame(width: 335, height: 250)
+                    
+                    CourseItem()
+                        .frame(width: 335, height: 250)
+                }
+                .frame(maxWidth: .infinity)
+            }
+            
             if show {
                 ScrollView {
                     CourseItem()
@@ -32,7 +41,21 @@ struct CoursesView: View {
                     }
                     .padding()
                 }
-                .transition(.opacity)
+                .background(Color("Background 1"))
+                //Create a transition with a define spring delay
+                .transition(
+                    .asymmetric(
+                        insertion: AnyTransition
+                                    //What kind of transition is it -> opacity
+                                    .opacity
+                                    //spring animation with delay
+                                    .animation(Animation.spring()
+                                                //Adds .3 sec delay
+                                                .delay(0.3)),
+                        removal: AnyTransition
+                            .opacity
+                            .animation(.spring()))
+                    )
                 .edgesIgnoringSafeArea(.all)
             }
         }
