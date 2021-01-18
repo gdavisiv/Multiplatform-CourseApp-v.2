@@ -19,13 +19,24 @@ struct CoursesView: View {
     var body: some View {
         ZStack {
             ScrollView {
-                VStack(spacing: 20) {
+                //Lazy Grid Allows you to implement columns that will adapt to different screen sizes
+                //It will try to fit as many columns as possible with a minimum width of 100
+                //Depending on the size of the screen
+                LazyVGrid(
+                    columns:
+                        //Array(repeating: .init(.flexible(), spacing: 16), count: 2),
+                        [
+                        GridItem(.adaptive(minimum: 160), spacing: 16)
+                        //GridItem(.adaptive(minimum: 160), spacing: 16)
+                        ],
+                        spacing: 16
+                ) {
                     ForEach(courses) { item in
                         CourseItem(course: item)
                             //Allows to animate shared elements between two views
                             //!show is false because we have to make it true
                             .matchedGeometryEffect(id: item.id, in: namespace, isSource: !show)
-                            .frame(width: 335, height: 250)
+                            .frame(height: 200)
                             .onTapGesture {
                                 withAnimation(.spring()) {
                                     //everytime you tap on the card it will switch between true/false
@@ -39,6 +50,7 @@ struct CoursesView: View {
                     }
                     
                 }
+                .padding(16)
                 .frame(maxWidth: .infinity)
             }
             //If selectedItem is not nil
@@ -54,7 +66,7 @@ struct CoursesView: View {
                                 //everytime you tap on the card it will switch between true/false
                                 show.toggle()
                                 selectedItem = nil
-                                //DispatchQueue allows a delay in after the click of the card 
+                                //DispatchQueue allows a delay in after the click of the card
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                                     isDisabled = false
                                 }
