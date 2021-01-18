@@ -62,6 +62,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E204F18625B5331000F14388 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E258542425AA81FD00F18B2F /* CoursesView.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		E2556AE425AFEE6A00FADC8B /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,8 +103,8 @@
 			children = (
 				E2D95CF325A60C2D007F8C89 /* Multiplatform_CourseAppApp.swift */,
 				E2556AE425AFEE6A00FADC8B /* Navigation */,
+				E204F18625B5331000F14388 /* Model */,
 				E2556AE725AFEE7D00FADC8B /* Items */,
-				E258542425AA81FD00F18B2F /* CoursesView.swift */,
 				E2EB767E25B2858F00DD9146 /* Course.swift */,
 				E2556AEE25AFEF7A00FADC8B /* CourseList.swift */,
 				E2D95CF525A60C2D007F8C89 /* Assets.xcassets */,

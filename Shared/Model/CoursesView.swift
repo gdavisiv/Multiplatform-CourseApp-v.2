@@ -11,6 +11,8 @@ struct CoursesView: View {
     @State var show = false
     //Set a collection of match elementsNeed
     @Namespace var namespace
+    //State to check if there is a selected item, but default it will be empty/zero
+    @State var selectedItem: Course? = nil
     
     var body: some View {
         ZStack {
@@ -22,16 +24,24 @@ struct CoursesView: View {
                             //!show is false because we have to make it true
                             .matchedGeometryEffect(id: item.id, in: namespace, isSource: !show)
                             .frame(width: 335, height: 250)
+                            .onTapGesture {
+                                withAnimation(.spring()) {
+                                    //everytime you tap on the card it will switch between true/false
+                                    show.toggle()
+                                    selectedItem = item
+                                }
+                            }
                     }
                     
                 }
                 .frame(maxWidth: .infinity)
             }
-            
-            if show {
+            //If selectedItem is not nil
+            if selectedItem != nil {
                 ScrollView {
-                    CourseItem(course: courses[0])
-                        .matchedGeometryEffect(id: courses[0].id, in: namespace)
+                    //Pass selectedItem into CourseItem with '!' because it will not be empty
+                    CourseItem(course: selectedItem!)
+                        .matchedGeometryEffect(id: selectedItem!.id, in: namespace)
                         .frame(height: 300)
                     VStack {
                         //Repeats CourseRow 20X
@@ -57,12 +67,6 @@ struct CoursesView: View {
                             .animation(.spring()))
                     )
                 .edgesIgnoringSafeArea(.all)
-            }
-        }
-        .onTapGesture {
-            withAnimation(.spring()) {
-                //everytime you tap on the card it will switch between true/false
-                show.toggle()
             }
         }
     }
