@@ -13,6 +13,8 @@ struct CoursesView: View {
     @Namespace var namespace
     //State to check if there is a selected item, but default it will be empty/zero
     @State var selectedItem: Course? = nil
+    //Transition out once the card is opened
+    @State var isDisabled = false
     
     var body: some View {
         ZStack {
@@ -29,8 +31,11 @@ struct CoursesView: View {
                                     //everytime you tap on the card it will switch between true/false
                                     show.toggle()
                                     selectedItem = item
+                                    isDisabled = true
                                 }
                             }
+                            //Once you tap a card, you can't tap on others
+                            .disabled(isDisabled)
                     }
                     
                 }
@@ -43,6 +48,18 @@ struct CoursesView: View {
                     CourseItem(course: selectedItem!)
                         .matchedGeometryEffect(id: selectedItem!.id, in: namespace)
                         .frame(height: 300)
+                        //We need the second TapGesture so that we can move back once the card is clicked on to be opened
+                        .onTapGesture {
+                            withAnimation(.spring()) {
+                                //everytime you tap on the card it will switch between true/false
+                                show.toggle()
+                                selectedItem = nil
+                                //DispatchQueue allows a delay in after the click of the card 
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                    isDisabled = false
+                                }
+                            }
+                        }
                     VStack {
                         //Repeats CourseRow 20X
                         ForEach(0 ..< 20) { item in
