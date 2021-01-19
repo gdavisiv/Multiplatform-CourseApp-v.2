@@ -32,69 +32,68 @@ struct CoursesView: View {
                         spacing: 16
                 ) {
                     ForEach(courses) { item in
-                        CourseItem(course: item)
-                            //Allows to animate shared elements between two views
-                            //!show is false because we have to make it true
-                            .matchedGeometryEffect(id: item.id, in: namespace, isSource: !show)
-                            .frame(height: 200)
-                            .onTapGesture {
-                                withAnimation(.spring()) {
-                                    //everytime you tap on the card it will switch between true/false
-                                    show.toggle()
-                                    selectedItem = item
-                                    isDisabled = true
+                        VStack {
+                            CourseItem(course: item)
+                                //Allows to animate shared elements between two views
+                                //!show is false because we have to make it true
+                                .matchedGeometryEffect(id: item.id, in: namespace, isSource: !show)
+                                .frame(height: 200)
+                                .onTapGesture {
+                                    withAnimation(.spring()) {
+                                        //everytime you tap on the card it will switch between true/false
+                                        show.toggle()
+                                        selectedItem = item
+                                        isDisabled = true
+                                    }
                                 }
-                            }
-                            //Once you tap a card, you can't tap on others
-                            .disabled(isDisabled)
+                                //Once you tap a card, you can't tap on others
+                                .disabled(isDisabled)
+                        }
+                        //Creating a container with its own ID
+                        //"container\(item.id)" allows to combine a string & variable
+                        .matchedGeometryEffect(id: "container\(item.id)", in: namespace, isSource: !show)
                     }
                     
                 }
                 .padding(16)
                 .frame(maxWidth: .infinity)
             }
+            //Ensures that the course info does not animated away behind the rest of the cards
+            .zIndex(1)
             //If selectedItem is not nil
+            //Creates Full Screen Mode
             if selectedItem != nil {
-                ScrollView {
-                    //Pass selectedItem into CourseItem with '!' because it will not be empty
-                    CourseItem(course: selectedItem!)
-                        .matchedGeometryEffect(id: selectedItem!.id, in: namespace)
-                        .frame(height: 300)
-                        //We need the second TapGesture so that we can move back once the card is clicked on to be opened
-                        .onTapGesture {
-                            withAnimation(.spring()) {
-                                //everytime you tap on the card it will switch between true/false
-                                show.toggle()
-                                selectedItem = nil
-                                //DispatchQueue allows a delay in after the click of the card
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    isDisabled = false
+                VStack {
+                    ScrollView {
+                        //Pass selectedItem into CourseItem with '!' because it will not be empty
+                        CourseItem(course: selectedItem!)
+                            .matchedGeometryEffect(id: selectedItem!.id, in: namespace)
+                            .frame(height: 300)
+                            //We need the second TapGesture so that we can move back once the card is clicked on to be opened
+                            .onTapGesture {
+                                withAnimation(.spring()) {
+                                    //everytime you tap on the card it will switch between true/false
+                                    show.toggle()
+                                    selectedItem = nil
+                                    //DispatchQueue allows a delay in after the click of the card
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                        isDisabled = false
+                                    }
                                 }
                             }
+                        VStack {
+                            //Repeats CourseRow 20X
+                            ForEach(0 ..< 20) { item in
+                                CourseRow()
+                            }
                         }
-                    VStack {
-                        //Repeats CourseRow 20X
-                        ForEach(0 ..< 20) { item in
-                            CourseRow()
-                        }
+                        .padding()
                     }
-                    .padding()
                 }
                 .background(Color("Background 1"))
+                //Creating another
+                .matchedGeometryEffect(id: "container\(selectedItem!.id)", in: namespace)
                 //Create a transition with a define spring delay
-                .transition(
-                    .asymmetric(
-                        insertion: AnyTransition
-                                    //What kind of transition is it -> opacity
-                                    .opacity
-                                    //spring animation with delay
-                                    .animation(Animation.spring()
-                                                //Adds .3 sec delay
-                                                .delay(0.3)),
-                        removal: AnyTransition
-                            .opacity
-                            .animation(.spring()))
-                    )
                 .edgesIgnoringSafeArea(.all)
             }
         }
