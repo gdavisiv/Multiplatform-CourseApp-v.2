@@ -66,28 +66,7 @@ struct CoursesView: View {
             //Creates Full Screen Mode
             if selectedItem != nil {
                 ZStack(alignment: .topTrailing) {
-                    VStack {
-                        ScrollView {
-                            //Pass selectedItem into CourseItem with '!' because it will not be empty
-                            CourseItem(course: selectedItem!)
-                                .matchedGeometryEffect(id: selectedItem!.id, in: namespace)
-                                .frame(height: 300)
-                                //We need the second TapGesture so that we can move back once the card is clicked on to be opened
-                            VStack {
-                                //Repeats CourseRow 20X
-                                ForEach(0 ..< 20) { item in
-                                    CourseRow()
-                                }
-                            }
-                            .padding()
-                        }
-                    }
-                    .background(Color("Background 1"))
-                    .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
-                    //Creating another
-                    .matchedGeometryEffect(id: "container\(selectedItem!.id)", in: namespace)
-                    //Create a transition with a define spring delay
-                    .edgesIgnoringSafeArea(.all)
+                    CourseDetail(course: selectedItem!, namespace: namespace)
                     
                     CloseButton()
                         .padding(.trailing, 16)
