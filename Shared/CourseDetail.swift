@@ -22,8 +22,11 @@ struct CourseDetail: View {
                     //We need the second TapGesture so that we can move back once the card is clicked on to be opened
                 VStack {
                     //Repeats CourseRow 20X
-                    ForEach(0 ..< 20) { item in
-                        CourseRow()
+                    ForEach(courseSections) { item in
+                        //Passing the Data through the component CourseRow()
+                        CourseRow(item: item)
+                        //Adds a divider through each item
+                        Divider()
                     }
                 }
                 .padding()

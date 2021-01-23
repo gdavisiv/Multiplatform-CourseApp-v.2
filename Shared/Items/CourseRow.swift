@@ -8,28 +8,29 @@
 import SwiftUI
 
 struct CourseRow: View {
+    
+    var item: CourseSection = courseSections[0]
+    
     var body: some View {
 
         HStack(alignment: .top) {
             //Pulling in SFSymbol Icon
-            Image(systemName: "paperplane.circle.fill")
-                //Allows use of the multicolor option
-                .renderingMode(.template)
+            Image(item.logo)
+                //Allows use of the original colors
+                .renderingMode(.original)
                 //Creating a frame
                 .frame(width: 48.0, height: 48.0)
                 //Changes the size of the icon
                 .imageScale(.medium)
-                //Background Color for the SfSymbol
-                .background(Color(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)))
+                //Background Color for the item.logo
+                .background(item.color)
                 .clipShape(Circle())
-                //Changes the SFSymbol Color to White
-                .foregroundColor(Color(#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)))
             VStack(alignment: .leading, spacing: 4.0) {
-                Text("SwiftUI")
+                Text(item.title)
                     //Sets the font as a subheading
                     .font(.subheadline)
                     .bold()
-                Text("Description")
+                Text(item.subtitle)
                     //Sets the font as footnote
                     .font(.footnote)
                     .foregroundColor(.secondary)
