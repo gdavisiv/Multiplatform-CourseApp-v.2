@@ -66,6 +66,7 @@ struct CoursesView: View {
             //Creates Full Screen Mode
             if selectedItem != nil {
                 ZStack(alignment: .topTrailing) {
+                    //Passed in the coursem and the namespace
                     CourseDetail(course: selectedItem!, namespace: namespace)
                     
                     CloseButton()
