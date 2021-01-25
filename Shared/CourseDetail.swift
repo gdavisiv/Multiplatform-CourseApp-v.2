@@ -13,6 +13,19 @@ struct CourseDetail: View {
     var namespace: Namespace.ID
     
     var body: some View {
+        #if os(iOS)
+        //Reference this in the body with 'var content: some View'
+        content
+        //Create a transition with a define spring delay
+        .edgesIgnoringSafeArea(.all)
+        
+        #else
+        content
+        
+        #endif
+    }
+    
+    var content: some View {
         VStack {
             ScrollView {
                 //Pass selectedItem into course
@@ -35,8 +48,6 @@ struct CourseDetail: View {
         .background(Color("Background 1"))
         .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
         .matchedGeometryEffect(id: "container\(course.id)", in: namespace)
-        //Create a transition with a define spring delay
-        .edgesIgnoringSafeArea(.all)
     }
 }
 
