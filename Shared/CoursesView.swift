@@ -94,7 +94,7 @@ struct CoursesView: View {
                 CourseDetail(course: selectedItem!, namespace: namespace)
                 
                 CloseButton()
-                    .padding(.trailing, 16)
+                    .padding(16)
                     .onTapGesture {
                         withAnimation(.spring()) {
                             //everytime you tap on the card it will switch between true/false
