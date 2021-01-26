@@ -8,7 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ViewBuilder
+    
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
+
+    
+    #else
+    #endif
+    
     var body: some View {
         #if os(iOS)
         SideBar()
