@@ -17,6 +17,30 @@ struct TabBar: View {
                 Image(systemName: "book.closed")
                 Text("Courses")
             }
+            
+            NavigationView {
+                CourseList()
+        }
+            .tabItem {
+                Image(systemName: "list.bullet.rectangle")
+                Text("Tutorials")
+            }
+            
+            NavigationView {
+                CourseList()
+        }
+            .tabItem {
+                Image(systemName: "tv")
+                Text("Livestreams")
+            }
+            
+            NavigationView {
+                CourseList()
+        }
+            .tabItem {
+                Image(systemName: "mail.stack")
+                Text("Certifications")
+            }
         }
     }
 }
