@@ -11,15 +11,18 @@ struct ContentView: View {
     
     #if os(iOS)
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
-
-    
-    #else
     #endif
     
     var body: some View {
         #if os(iOS)
-        SideBar()
+        if horizontalSizeClass == .compact {
+            
+        } else {
+            SideBar()
+        }
+
         #else
+        
         SideBar()
             .frame(minWidth: 1000, minHeight: 600)
         #endif
