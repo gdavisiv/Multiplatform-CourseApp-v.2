@@ -40,6 +40,13 @@ struct CoursesView: View {
     
     var content: some View {
         ScrollView {
+            Text("Courses")
+                .font(.largeTitle)
+                .bold()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(16)
+                .padding(.top, 54)
+            
             //Lazy Grid Allows you to implement columns that will adapt to different screen sizes
             //It will try to fit as many columns as possible with a minimum width of 100
             //Depending on the size of the screen
