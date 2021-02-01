@@ -40,51 +40,53 @@ struct CoursesView: View {
     
     var content: some View {
         ScrollView {
-            Text("Courses")
-                .font(.largeTitle)
-                .bold()
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(16)
-                .padding(.top, 54)
-            
-            //Lazy Grid Allows you to implement columns that will adapt to different screen sizes
-            //It will try to fit as many columns as possible with a minimum width of 100
-            //Depending on the size of the screen
-            LazyVGrid(
-                columns:
-                    //Array(repeating: .init(.flexible(), spacing: 16), count: 2),
-                    [
-                    GridItem(.adaptive(minimum: 160), spacing: 16)
-                    //GridItem(.adaptive(minimum: 160), spacing: 16)
-                    ],
-                    spacing: 16
-            ) {
-                ForEach(courses) { item in
-                    VStack {
-                        CourseItem(course: item)
-                            //Allows to animate shared elements between two views
-                            //!show is false because we have to make it true
-                            .matchedGeometryEffect(id: item.id, in: namespace, isSource: !show)
-                            .frame(height: 200)
-                            .onTapGesture {
-                                withAnimation(.spring(response: 0.3, dampingFraction: 0.5, blendDuration: 0)) {
-                                    //everytime you tap on the card it will switch between true/false
-                                    show.toggle()
-                                    selectedItem = item
-                                    isDisabled = true
-                                }
-                            }
-                            //Once you tap a card, you can't tap on others
-                            .disabled(isDisabled)
-                    }
-                    //Creating a container with its own ID
-                    //"container\(item.id)" allows to combine a string & variable
-                    .matchedGeometryEffect(id: "container\(item.id)", in: namespace, isSource: !show)
-                }
+            VStack(spacing: 0) {
+                Text("Courses")
+                    .font(.largeTitle)
+                    .bold()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 16)
+                    .padding(.top, 54)
                 
+                //Lazy Grid Allows you to implement columns that will adapt to different screen sizes
+                //It will try to fit as many columns as possible with a minimum width of 100
+                //Depending on the size of the screen
+                LazyVGrid(
+                    columns:
+                        //Array(repeating: .init(.flexible(), spacing: 16), count: 2),
+                        [
+                        GridItem(.adaptive(minimum: 160), spacing: 16)
+                        //GridItem(.adaptive(minimum: 160), spacing: 16)
+                        ],
+                        spacing: 16
+                ) {
+                    ForEach(courses) { item in
+                        VStack {
+                            CourseItem(course: item)
+                                //Allows to animate shared elements between two views
+                                //!show is false because we have to make it true
+                                .matchedGeometryEffect(id: item.id, in: namespace, isSource: !show)
+                                .frame(height: 200)
+                                .onTapGesture {
+                                    withAnimation(.spring(response: 0.3, dampingFraction: 0.5, blendDuration: 0)) {
+                                        //everytime you tap on the card it will switch between true/false
+                                        show.toggle()
+                                        selectedItem = item
+                                        isDisabled = true
+                                    }
+                                }
+                                //Once you tap a card, you can't tap on others
+                                .disabled(isDisabled)
+                        }
+                        //Creating a container with its own ID
+                        //"container\(item.id)" allows to combine a string & variable
+                        .matchedGeometryEffect(id: "container\(item.id)", in: namespace, isSource: !show)
+                    }
+                    
+                }
+                .padding(16)
+                .frame(maxWidth: .infinity)
             }
-            .padding(16)
-            .frame(maxWidth: .infinity)
         }
         //Ensures that the course info does not animated away behind the rest of the cards
         .zIndex(1)
