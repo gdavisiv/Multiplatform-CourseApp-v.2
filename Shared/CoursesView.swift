@@ -82,10 +82,14 @@ struct CoursesView: View {
                         //"container\(item.id)" allows to combine a string & variable
                         .matchedGeometryEffect(id: "container\(item.id)", in: namespace, isSource: !show)
                     }
-                    
                 }
                 .padding(16)
                 .frame(maxWidth: .infinity)
+                
+                Text("Latest Sections")
+                    .fontWeight(.semibold)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
                 
                 //Created LazyVGrid
                 LazyVGrid(columns: [GridItem(.adaptive(minimum: 240))]) {
