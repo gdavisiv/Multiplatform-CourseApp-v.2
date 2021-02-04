@@ -86,6 +86,16 @@ struct CoursesView: View {
                 }
                 .padding(16)
                 .frame(maxWidth: .infinity)
+                
+                //Created LazyVGrid
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 240))]) {
+                    //List each SEctions
+                    ForEach(courseSections) { item in
+                        //Grabs CourseRow and displays info
+                        CourseRow(item: item)
+                    }
+                }
+                .padding()
             }
         }
         //Ensures that the course info does not animated away behind the rest of the cards
