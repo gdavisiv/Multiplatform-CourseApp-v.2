@@ -13,11 +13,12 @@ struct CourseDetail: View {
     var namespace: Namespace.ID
     #if os(iOS)
     //Sets a new corner radius 22 for iOS
-    var cornerRadius: CGFloat = 22
+    var cornerRadius: CGFloat = 10
     #else
     //Set macOS to corner radius of 10
     var cornerRadius: CGFloat = 0
     #endif
+    @State var showModal = false
     
     var body: some View {
         #if os(iOS)
@@ -45,6 +46,13 @@ struct CourseDetail: View {
                     ForEach(courseSections) { item in
                         //Passing the Data through the component CourseRow()
                         CourseRow(item: item)
+                            .sheet(isPresented: $showModal) {
+                                CourseList()
+                            }
+                            //Set the action
+                            .onTapGesture {
+                                showModal = true
+                            }
                         //Adds a divider through each item
                         Divider()
                     }

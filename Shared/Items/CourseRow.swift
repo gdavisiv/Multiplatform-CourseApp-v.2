@@ -30,6 +30,8 @@ struct CourseRow: View {
                     //Sets the font as a subheading
                     .font(.subheadline)
                     .bold()
+                    //Sets system Color
+                    .foregroundColor(.primary)
                 Text(item.subtitle)
                     //Sets the font as footnote
                     .font(.footnote)

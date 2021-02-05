@@ -11,6 +11,7 @@ struct CoursesView: View {
     @State var show = false
     //Set a collection of match elementsNeed
     @Namespace var namespace
+    @Namespace var namespace2
     //State to check if there is a selected item, but default it will be empty/zero
     @State var selectedItem: Course? = nil
     //Transition out once the card is opened
@@ -96,7 +97,9 @@ struct CoursesView: View {
                     //List each SEctions
                     ForEach(courseSections) { item in
                         //Grabs CourseRow and displays info
-                        CourseRow(item: item)
+                        NavigationLink(destination: CourseDetail(namespace: namespace2)) {
+                            CourseRow(item: item)
+                        }
                     }
                 }
                 .padding()
